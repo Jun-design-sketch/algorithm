@@ -54,7 +54,6 @@ public class Main {
 
         int sPoint = 0;
         int tPoint = 0;
-        boolean result = true;
 
         while(sPoint < s.length() && tPoint < t.length()) {
             if(sArr[sPoint] == tArr[tPoint]) {
