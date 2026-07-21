@@ -19,12 +19,20 @@ public class Main {
     // 사각형의 가로값은, (오른편 - 왼편)
     public int maxArea(int[] height) {
         int left = 0;
-        int right = 0;
+        int right = height.length - 1;
 
+        int size = 0;
         while(left < right) {
-            break;
+            int h = Integer.min(height[left], height[right]);
+            int w = right - left;
+            int thisTime = h * w;
+
+            size = Integer.max(size, thisTime);
+
+            if(h == height[left]) left++;
+            else if(h == height[right]) right--;
         }
 
-        return 0;
+        return size;
     }
 }
