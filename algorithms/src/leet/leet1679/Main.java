@@ -27,6 +27,9 @@ public class Main {
     }
 
     // O(n^2)
+    // Oを節減するには？
+    // ポインタを移動する == ポインタが居た箇所は不要確定
+    // 確信ができなかったから^2になった
     public int maxOperations(int[] nums, int k) {
         int l = 0;
         int r = nums.length-1;
