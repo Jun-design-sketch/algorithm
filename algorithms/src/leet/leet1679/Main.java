@@ -1,5 +1,7 @@
 package leet.leet1679;
 
+import java.util.Arrays;
+
 /*
 ** kを作れる二つの要素
 ** 重複使用不可
@@ -26,11 +28,33 @@ public class Main {
         System.out.println(m.maxOperations(q4, k4)); // 2
     }
 
+    // 整列していればどのポインタを動かすべきであるかは明確だった
+    public int maxOperations(int[] nums, int k) {
+        Arrays.sort(nums);
+        int count = 0;
+        int left = 0;
+        int right = nums.length - 1;
+        while(left < right) {
+            int sum = nums[left] + nums[right];
+
+            if(sum == k) {
+                count++;
+                left++;
+                right--;
+            } else if(sum < k) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return count;
+    }
+
     // O(n^2)
     // Oを節減するには？
     // ポインタを移動する == ポインタが居た箇所は不要確定
     // 確信ができなかったから^2になった
-    public int maxOperations(int[] nums, int k) {
+    public int maxOperationsBad(int[] nums, int k) {
         int l = 0;
         int r = nums.length-1;
         int count = 0;
