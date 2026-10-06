@@ -13,7 +13,7 @@ public class Main {
         System.out.printf("%.5f\n", m.findMaxAverage(nums2, k2)); // 5.00000
     }
 
-    public double findMaxAverage(int[] nums, int k) {
+    public double findMaxAverageOld(int[] nums, int k) {
         double maxValue = (double) Integer.MIN_VALUE;
         int windowsLength = k;
         int fullLength = nums.length;
@@ -29,5 +29,26 @@ public class Main {
         }
 
         return maxValue;
+    }
+
+    /*
+    * slide windowするときは、左の元素を失う・右の元素を得る
+    * そのため、slideする度に失う分と得られる分を反映するだけで良い
+     */
+    public double findMaxAverage(int[] nums, int k) {
+        // 初回の和を求める
+        int sum = 0;
+        for (int i = 0; i < k; i++){
+            sum += nums[i];
+        }
+
+        // 初回以降の和を求める
+        int newSum = sum;
+        for (int i = k; i < nums.length; i++) {
+            newSum += nums[i] - nums[i-k];
+            sum = Math.max(sum, newSum);
+        }
+
+        return (double) sum / k;
     }
 }
