@@ -17,6 +17,27 @@ public class Main {
 
         // 初回分以降の母音数をチェックする
         int max = count;
+        if(max == k) return max;
+
+        for(int i = k; i < s.length(); i++) {
+            if(isVowel(s, i-k)) count--;
+            if(isVowel(s, i)) count++;
+            max = Math.max(max, count);
+            if(max == k) return max;
+        }
+
+        return max;
+    }
+
+    public int maxVowelsOld(String s, int k) {
+        // 初回分の母音数をチェックする
+        int count = 0;
+        for(int i = 0; i < k; i++) {
+            if(isVowel(s, i)) count++;
+        }
+
+        // 初回分以降の母音数をチェックする
+        int max = count;
         int newCount = count;
         for(int i = k; i < s.length(); i++) {
             if(isVowel(s, i-k)) newCount--;
