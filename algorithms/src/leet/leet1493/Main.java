@@ -9,6 +9,19 @@ public class Main {
     }
 
     public int longestSubarray(int[] nums) {
-        return 0;
+        int chance = 1;
+        int left = 0;
+        int maxLength = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            if(nums[right] == 0) chance--;
+            while(chance < 0) {
+                if(nums[left] == 0) chance++;
+                left++;
+            }
+            maxLength = Math.max(maxLength, right - left);
+        }
+
+        return maxLength;
     }
 }
