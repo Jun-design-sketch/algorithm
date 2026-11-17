@@ -34,7 +34,6 @@ public class Main {
         result.add(a2);
         return result;
     }
-
     private void hashMapWas() {
         // ~= python dictionary
         Map<String, Integer> scores = new HashMap<>();
